@@ -1,17 +1,15 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
-function App() {
-
+import React from 'react';
+import MainLayout from './layouts/MainLayout';
+import AppRouter from './router';
+const App: React.FC = () => {
   return (
-    <>
-      <p className="text-red-500 text-lg font-bold my-4">
-        Campuse Portfolios
-      </p>
-    </>
-  )
+    <div className="min-h-screen bg-black">
+      <MainLayout>
+        <AppRouter />
+      </MainLayout>
+      
+    </div>
+  );
 }
 
-export default App
+export default App;
