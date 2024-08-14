@@ -1,15 +1,18 @@
-import React from 'react';
-import MainLayout from './layouts/MainLayout';
+import { useState } from 'react';
+import './App.css'
+import MainLayout from './layout/MainLayout';
 import AppRouter from './router';
-const App: React.FC = () => {
+
+function App() {
+
   return (
-    <div className="min-h-screen bg-black">
+    <>
       <MainLayout>
         <AppRouter />
       </MainLayout>
       
-    </div>
-  );
+    </>
+  )
 }
 
 export default App;
