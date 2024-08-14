@@ -8,7 +8,7 @@ interface MainLayoutProps {
 const MainLayout = ({ children }: MainLayoutProps) => {
   return (
     <>
-      <Navbar isLoggedIn={true}/>
+      <Navbar isLoggedIn={false}/>
       {children}
     </>
   );

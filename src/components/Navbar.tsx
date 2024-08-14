@@ -1,5 +1,5 @@
 // src/components/Navbar.tsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { IoReorderTwoOutline, IoClose } from 'react-icons/io5';
 
 interface NavbarProps {
@@ -11,13 +11,30 @@ export const Navbar: React.FC<NavbarProps> = ({ isLoggedIn }) => {
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
+  useEffect(() => {
+    if (isMenuOpen) {
+      // Hide scrollbar when menu is open
+      document.body.style.overflow = 'hidden';
+    } else {
+      // Show scrollbar when menu is closed
+      document.body.style.overflow = 'auto';
+    }
+
+    // Cleanup function to reset overflow on component unmount
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isMenuOpen]);
+
   return (
-    <nav className="bg-black text-white p-4 fixed top-0 left-0 w-full z-50">
-      <div className="flex justify-between items-center px-2 py-0 max-w-full mx-auto">
+    <nav className="bg-black text-white p-4 fixed top-0 left-0 w-full z-50" >
+      <div className="flex justify-between items-center px-2 py-0 max-w-full mx-auto" >
         {/* Logo and Title */}
         <div className="flex items-center space-x-4">
-          <img src="/path/to/logo.png" alt="Logo" className="h-8" />
-          <span className="text-xl font-semibold">CAMPUS Portfolios</span>
+          <img src="src\assets\graduation-cap-svgrepo-com.svg" alt="Logo" className="h-8" />
+          <a href="/" className='text-white'>
+            <span className="text-xl font-semibold">CAMPUS Portfolios</span>
+            </a>
         </div>
         {/* Mobile Menu Button */}
         <button
@@ -27,16 +44,16 @@ export const Navbar: React.FC<NavbarProps> = ({ isLoggedIn }) => {
           {isMenuOpen ? <IoClose size={20} /> : <IoReorderTwoOutline size={20} />}
         </button>
         {/* Mobile Menu */}
-        <ul className={`lg:hidden fixed top-14 left-0 h-full w-full bg-black flex flex-col items-center justify-start ${isMenuOpen ? 'block' : 'hidden'}`}>
+        <ul className={`lg:hidden fixed top-14 left-0 h-full w-full bg-black flex flex-col items-center justify-start ${isMenuOpen ? 'block' : 'hidden'}` }>
           {!isLoggedIn && (
             <>
               <li className="py-2 w-full text-center">
-                <a href="#login" className="text-white text-lg hover:text-gray-300 transition-colors duration-200" onClick={() => setIsMenuOpen(false)}>
+                <a href="/login" className="text-white text-lg hover:text-gray-300 transition-colors duration-200" onClick={() => setIsMenuOpen(false)}>
                   Sign In
                 </a>
               </li>
               <li className="py-2 w-full text-center">
-                <a href="#signup" className="text-white text-lg hover:text-gray-300 transition-colors duration-200" onClick={() => setIsMenuOpen(false)}>
+                <a href="/signup" className="text-white text-lg hover:text-gray-300 transition-colors duration-200" onClick={() => setIsMenuOpen(false)}>
                   Sign Up
                 </a>
               </li>
@@ -44,7 +61,7 @@ export const Navbar: React.FC<NavbarProps> = ({ isLoggedIn }) => {
           )}
           {['Template', 'about', 'contact'].map((item) => (
             <li key={item} className="py-2 w-full text-center">
-              <a href={`#${item}`} className="text-white text-lg hover:text-gray-300 transition-colors duration-200" onClick={() => setIsMenuOpen(false)}>
+              <a href={`/${item}`} className="text-white text-lg hover:text-gray-300 transition-colors duration-200" onClick={() => setIsMenuOpen(false)}>
                 {item.charAt(0).toUpperCase() + item.slice(1)}
               </a>
             </li>
@@ -56,18 +73,18 @@ export const Navbar: React.FC<NavbarProps> = ({ isLoggedIn }) => {
           )}
         </ul>
         {/* Desktop Menu */}
-        <div className="hidden lg:flex items-center space-x-4">
+        <div className="hidden lg:flex items-center space-x-5">
           {['Template', 'about', 'contact'].map((item) => (
-            <a key={item} href={`#${item}`} className="hover:text-gray-300 transition-colors duration-200">
+            <a key={item} href={`/${item}`} className="hover:text-gray-300 transition-colors duration-200">
               {item.charAt(0).toUpperCase() + item.slice(1)}
             </a>
           ))}
           {!isLoggedIn ? (
             <>
-              <a href="#login" className="px-4 py-2 rounded bg-gray-700 hover:bg-gray-600 transition-colors duration-200">
+              <a href="/login" className="px-4 py-2 rounded bg-gray-700 hover:bg-gray-600 transition-colors duration-200">
                 Sign In
               </a>
-              <a href="#signup" className="px-4 py-2 rounded bg-gray-700 hover:bg-gray-600 transition-colors duration-200">
+              <a href="/signup" className="px-4 py-2 rounded bg-gray-700 hover:bg-gray-600 transition-colors duration-200">
                 Sign Up
               </a>
             </>
