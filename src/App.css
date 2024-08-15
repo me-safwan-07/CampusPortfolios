@@ -1,3 +1,142 @@
+/* Base styles */
 body {
-  background-color: black;
+  background-color: white;
+  color: black;
+}
+
+.grid, .template-card {
+  background-color: white;
+  color: black; /* Light mode background for grid and cards */
+}
+
+/* Dark mode styles */
+.dark body {
+  background-color: black; /* Dark background for body */
+  color: white; /* Light text color */
+}
+
+.dark .grid, .dark .template-card {
+  background-color: black; /* Dark background for grid and cards */
+  color: white; /* Light text color */
+}
+
+/* Navbar styles */
+.nav-bar {
+  background-color: white;
+  color: black;
+}
+
+.nav-bar img {
+  height: 2rem; /* Adjust as needed */
+}
+
+.nav-bar .menu-button,
+.nav-bar .mobile-menu {
+  background-color: white;
+  color: black;
+}
+
+.nav-bar a {
+  color: black;
+  text-decoration: none;
+}
+
+.nav-bar a:hover {
+  color: gray; /* Hover color for links */
+}
+
+/* Dark mode navbar styles */
+.dark .nav-bar {
+  background-color: black; /* Dark background color */
+  color: white; /* Light text color */
+}
+
+.dark .nav-bar img {
+  filter: brightness(0) invert(1); /* Adjust logo for dark mode */
+}
+
+.dark .nav-bar .menu-button,
+.dark .nav-bar .mobile-menu {
+  background-color: black; /* Dark background for menu elements */
+  color: white; /* Light color for text */
+}
+
+.dark .nav-bar a {
+  color: white; /* Light color for links */
+}
+
+.dark .nav-bar a:hover {
+  color: #cccccc; /* Slightly lighter color for link hover */
+}
+
+/* Template card styles */
+.template-card {
+  border: 1px solid #e5e7eb; /* Light border */
+}
+
+.template-card img {
+  border-bottom: 1px solid #e5e7eb; /* Light border under the image */
+}
+
+.template-card h3, .template-card p {
+  color: black; /* Default text color */
+}
+
+.template-card hr {
+  border-color: #e5e7eb; /* Light border color */
+}
+
+.template-card button,
+.template-card a {
+  background-color: #374151; /* Gray background */
+  color: white;
+}
+
+.template-card button:hover,
+.template-card a:hover {
+  background-color: #1f2937; /* Darker gray background on hover */
+}
+
+/* Dark mode template card styles */
+.dark .template-card {
+  border: 1px solid #4b5563; /* Darker border */
+}
+
+.dark .template-card img {
+  border-bottom: 1px solid #4b5563; /* Dark border under the image */
+}
+
+.dark .template-card h3, .dark .template-card p {
+  color: white; /* Light text color */
+}
+
+.dark .template-card hr {
+  border-color: #4b5563; /* Darker border color */
+}
+
+.dark .template-card button,
+.dark .template-card a {
+  background-color: #4b5563; /* Dark gray background */
+}
+
+.dark .template-card button:hover,
+.dark .template-card a:hover {
+  background-color: #6b7280; /* Lighter gray background on hover */
+}
+
+/* Responsive padding for template container */
+.template-container {
+  padding: 1rem; /* Base padding */
+}
+
+@media (min-width: 640px) {
+  .template-container {
+    padding: 1.5rem; /* Small screens padding */
+  }
+}
+
+@media (min-width: 1024px) {
+  .template-container {
+    padding: 2rem; /* Large screens padding */
+  }
 }

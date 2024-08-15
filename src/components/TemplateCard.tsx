@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTheme } from '../hooks/useTheme'; 
 
 interface TemplateCardProps {
   title: string;
@@ -9,22 +10,23 @@ interface TemplateCardProps {
 }
 
 export const TemplateCard: React.FC<TemplateCardProps> = ({ title, description, imageUrl, price, liveDemoUrl }) => {
+  const { theme } = useTheme();
   return (
-    <div className="bg-black rounded-lg shadow-lg overflow-hidden w-full mx-auto border border-white/50 transition-all duration-300 hover:border-white hover:border-2 hover:shadow-2xl cursor-pointer">
+    <div className={`template-card rounded-lg shadow-lg overflow-hidden w-full mx-auto border border-gray-200 transition-all duration-300 hover:border-gray-300 hover:shadow-2xl cursor-pointer ${theme === 'dark' ? 'dark' : ''}`}>
       <img src={imageUrl} alt={title} className="w-full h-40 object-cover" />
       <div className="p-4">
-        <h3 className="text-lg font-bold text-white mb-2 sm:text-xl text-center">{title}</h3>
-        <p className="text-gray-400 mb-4 text-sm sm:text-base text-center">{description}</p>
-        <hr className="border-gray-600 mb-4" />
+        <h3 className="text-lg font-bold text-black mb-2 sm:text-xl text-center dark:text-white">{title}</h3>
+        <p className="text-gray-600 mb-4 text-sm sm:text-base text-center dark:text-white">{description}</p>
+        <hr className="border-gray-300 mb-4 dark:border-gray-600" />
         <div className="flex">
-          <button className="bg-black-600 hover:bg-black-700 text-white font-bold py-2 px-4 rounded flex-grow">
+          <button className="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded flex-grow dark:bg-gray-600 dark:hover:bg-gray-500">
             {price}
           </button>
           <a
             href={liveDemoUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-black-600 hover:bg-black-300 text-white text-center font-bold py-2 px-4 rounded flex-grow"
+            className="bg-gray-700 hover:bg-gray-500 text-white text-center font-bold py-2 px-4 rounded flex-grow dark:bg-gray-600 dark:hover:bg-gray-400"
           >
             Live Demo
           </a>
@@ -32,4 +34,4 @@ export const TemplateCard: React.FC<TemplateCardProps> = ({ title, description, 
       </div>
     </div>
   );
-}
+};
