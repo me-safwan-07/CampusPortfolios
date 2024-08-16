@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import { FindTemplate, TemplateCard } from '../components';
 import { templates } from "../data";
 import { Sidebar } from '../components/Sidebar';
