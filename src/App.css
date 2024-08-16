@@ -2,6 +2,7 @@
 body {
   background-color: white;
   color: black;
+  /* padding: 0 10% 0 10%; */
 }
 
 .grid, .template-card {

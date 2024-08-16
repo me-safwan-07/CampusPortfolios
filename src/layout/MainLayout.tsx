@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { Navbar} from "../components";
+import { Navbar, Footer} from "../components";
 
 interface MainLayoutProps {
   children: ReactNode;
@@ -10,6 +10,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
     <>
       <Navbar isLoggedIn={false}/>
       {children}
+      <Footer />
     </>
   );
 };

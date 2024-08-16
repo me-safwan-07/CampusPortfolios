@@ -11,7 +11,7 @@ export interface Template {
     {
       title: "Next.js Boilerplate",
       description: "Get started with Next.js and React in seconds.",
-      imageUrl: "/path-to-image",
+      imageUrl: "src/assets/next js template .png",
       price: "₹499",
       liveDemoUrl: "https://example.com/demo1",
       category: "starter",
@@ -56,6 +56,53 @@ export interface Template {
       liveDemoUrl: "https://example.com/demo2",
       category: "ecommerce",
     },
-    
+    {
+      title: "Next.js Boilerplate",
+      description: "Get started with Next.js and React in seconds.",
+      imageUrl: "src/assets/next js template .png",
+      price: "₹499",
+      liveDemoUrl: "https://example.com/demo1",
+      category: "starter",
+    },
+    {
+      title: "Image Gallery Starter",
+      description: "An image gallery built on Next.js and Cloudinary.",
+      imageUrl: "/path-to-image",
+      price: "₹699",
+      liveDemoUrl: "https://example.com/demo2",
+      category: "ecommerce",
+    },
+        {
+      title: "Next.js Boilerplate",
+      description: "Get started with Next.js and React in seconds.",
+      imageUrl: "/path-to-image",
+      price: "₹499",
+      liveDemoUrl: "https://example.com/demo1",
+      category: "starter",
+    },
+    {
+      title: "Image Gallery Starter",
+      description: "An image gallery built on Next.js and Cloudinary.",
+      imageUrl: "/path-to-image",
+      price: "₹699",
+      liveDemoUrl: "https://example.com/demo2",
+      category: "ecommerce",
+    },
+        {
+      title: "Next.js Boilerplate",
+      description: "Get started with Next.js and React in seconds.",
+      imageUrl: "/path-to-image",
+      price: "₹499",
+      liveDemoUrl: "https://example.com/demo1",
+      category: "starter",
+    },
+    {
+      title: "Image Gallery Starter",
+      description: "An image gallery built on Next.js and Cloudinary.",
+      imageUrl: "/path-to-image",
+      price: "₹699",
+      liveDemoUrl: "https://example.com/demo2",
+      category: "ecommerce",
+    },
     // Add more templates
   ];

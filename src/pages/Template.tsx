@@ -12,7 +12,7 @@ function Template() {
         <Sidebar className="flex-shrink-0 md:w-1/4 lg:w-1/5" />
         
         {/* Main content grid */}
-        <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 dark:bg-black">
+        <div className="flex-1 grid grid-cols-1 s p-2 m:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 dark:bg-black">
           {templates.map(template => (
             <TemplateCard
               key={template.title}
