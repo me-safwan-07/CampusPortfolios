@@ -37,10 +37,10 @@ body {
   color: black;
 }
 
-.nav-bar a {
+/* .nav-bar a {
   color: black;
   text-decoration: none;
-}
+} */
 
 .nav-bar a:hover {
   color: gray; /* Hover color for links */
@@ -60,14 +60,6 @@ body {
 .dark .nav-bar .mobile-menu {
   background-color: black; /* Dark background for menu elements */
   color: white; /* Light color for text */
-}
-
-.dark .nav-bar a {
-  color: white; /* Light color for links */
-}
-
-.dark .nav-bar a:hover {
-  color: #cccccc; /* Slightly lighter color for link hover */
 }
 
 /* Template card styles */

@@ -18,7 +18,7 @@ export const Navbar: React.FC<NavbarProps> = ({ isLoggedIn }) => {
   const menuBackground = theme === 'dark' ? 'bg-black' : 'bg-white';
   const buttonClass = `px-4 py-2 rounded transition-colors duration-200 ${theme === 'dark' ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-300 hover:bg-gray-200'}`;
 
- const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? 'hidden' : 'auto';
@@ -55,21 +55,21 @@ export const Navbar: React.FC<NavbarProps> = ({ isLoggedIn }) => {
           {!isLoggedIn && (
             <>
               <li className="py-2 w-full text-center">
-                <a href="/login" className={`text-lg hover:text-gray-300 transition-colors duration-200 ${theme === 'dark' ? 'text-white' : 'text-black'}`} onClick={() => setIsMenuOpen(false)}>
-                  Sign In
+                <a href="/login" className={`text-lg hover:text-gray-300 transition-colors duration-200 ${theme === 'dark' ? 'text-white bg-black' : 'text-black bg-white'}`} onClick={() => setIsMenuOpen(false)}>
+                  Log In
                 </a>
               </li>
               <li className="py-2 w-full text-center">
-                <a href="/signup" className="text-lg hover:text-gray-300 transition-colors duration-200 text-white" onClick={() => setIsMenuOpen(false)}>
+                <a href="/signup" className={`text-lg hover:text-gray-300 transition-colors duration-200 ${theme === 'dark' ? 'text-black bg-white' : 'text-white bg-black'}`} onClick={() => setIsMenuOpen(false)}>
                   Sign Up
                 </a>
               </li>
             </>
           )}
-          {['Template', 'about', 'contact'].map((item) => (
+          {['Template', 'About', 'Contact'].map((item) => (
             <li key={item} className="py-2 w-full text-center">
-              <a href={`/${item}`} className="text-lg hover:text-gray-300 transition-colors duration-200" onClick={() => setIsMenuOpen(false)}>
-                {item.charAt(0).toUpperCase() + item.slice(1)}
+              <a href={`/${item.toLowerCase()}`} className="text-lg hover:text-gray-300 transition-colors duration-200" onClick={() => setIsMenuOpen(false)}>
+                {item}
               </a>
             </li>
           ))}
@@ -88,11 +88,13 @@ export const Navbar: React.FC<NavbarProps> = ({ isLoggedIn }) => {
 
         {/* Desktop Menu */}
         <div className="hidden lg:flex items-center space-x-5">
-          {['Template', 'about', 'contact'].map((item) => (
-            <a key={item} href={`/${item}`} className="hover:text-gray-300 transition-colors duration-200">
-              {item.charAt(0).toUpperCase() + item.slice(1)}
+          {/* Links */}
+          {['Template', 'About', 'Contact'].map((item) => (
+            <a key={item} href={`/${item.toLowerCase()}`} className="hover:text-gray-300 transition-colors duration-200">
+              {item}
             </a>
           ))}
+
           {/* Dark/Light Mode Toggle Button */}
           <button
             onClick={toggleTheme}
@@ -100,12 +102,29 @@ export const Navbar: React.FC<NavbarProps> = ({ isLoggedIn }) => {
           >
             {theme === 'dark' ? <MdOutlineLightMode size={20} /> : <LuMoonStar size={20} />}
           </button>
+        </div>
+
+        <div className="hidden lg:flex items-center space-x-4">
           {!isLoggedIn ? (
             <>
-              <a href="/login" className={buttonClass}>
+              <a 
+                href="/login" 
+                className={`px-4 py-1 rounded border transition-colors duration-200 
+                  ${theme === 'dark' 
+                    ? 'bg-black text-white border-gray-500 hover:bg-gray-600' 
+                    : 'bg-white text-black border-gray-300 hover:bg-gray-200'
+                  }`}
+              >
                 Sign In
               </a>
-              <a href="/signup" className={buttonClass}>
+              <a 
+                href="/signup" 
+                className={`px-4 py-1 rounded border transition-colors duration-200 
+                  ${theme === 'dark' 
+                    ? 'bg-white text-black border-gray-500 hover:bg-gray-600' 
+                    : 'bg-black text-white border-gray-300 hover:bg-gray-200'
+                  }`}
+              >
                 Sign Up
               </a>
             </>
