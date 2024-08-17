@@ -12,8 +12,8 @@ export const Navbar: React.FC<NavbarProps> = ({ isLoggedIn }) => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const { theme, toggleTheme } = useTheme(); // Use the theme hook
 
-  const lightModeLogo = 'src/assets/light.logo.svg';
-  const darkModeLogo = 'src/assets/dark.logo.svg';
+  const lightModeLogo = '/assets/light.logo.svg';
+  const darkModeLogo = '/assets/dark.logo.svg';
   const themeClasses = theme === 'dark' ? 'bg-black text-white' : 'bg-white text-black';
   const menuBackground = theme === 'dark' ? 'bg-black' : 'bg-white';
   const buttonClass = `px-4 py-2 rounded transition-colors duration-200 ${theme === 'dark' ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-300 hover:bg-gray-200'}`;
