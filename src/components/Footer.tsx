@@ -12,7 +12,7 @@ export const Footer: React.FC = () => {
           {/* Logo and Title */}
           <div className="flex items-center space-x-4 mb-4 md:mb-0">
             <img 
-              src={theme === 'dark' ? 'src/assets/dark.logo.svg' : 'src/assets/light.logo.svg'} 
+              src={theme === 'dark' ? 'assets/dark.logo.svg' : 'assets/light.logo.svg'} 
               alt="Logo" 
               className="h-8"
             />

@@ -16,7 +16,7 @@ export const Navbar: React.FC<NavbarProps> = ({ isLoggedIn }) => {
   const darkModeLogo = '/assets/dark.logo.svg';
   const themeClasses = theme === 'dark' ? 'bg-black text-white' : 'bg-white text-black';
   const menuBackground = theme === 'dark' ? 'bg-black' : 'bg-white';
-  const buttonClass = `px-4 py-2 rounded transition-colors duration-200 ${theme === 'dark' ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-300 hover:bg-gray-200'}`;
+  // const buttonClass = `px-4 py-2 rounded transition-colors duration-200 ${theme === 'dark' ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-300 hover:bg-gray-200'}`;
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -28,7 +28,7 @@ export const Navbar: React.FC<NavbarProps> = ({ isLoggedIn }) => {
   }, [isMenuOpen]);
 
   return (
-    <nav className={`nav-bar fixed top-0 left-0 w-full z-50 ${themeClasses} p-4`}>
+    <nav className={`nav-bar fixed border-b border-black  top-0 left-0 w-full z-50 ${themeClasses} p-4`}>
       <div className="flex justify-between items-center px-2 py-0 max-w-full mx-auto">
         {/* Logo and Title */}
         <div className="flex items-center space-x-4">
@@ -80,7 +80,7 @@ export const Navbar: React.FC<NavbarProps> = ({ isLoggedIn }) => {
           )}
           <button
             onClick={toggleTheme}
-            className={buttonClass}
+            // className={buttonClass}
           >
             {theme === 'dark' ? <MdOutlineLightMode size={20} /> : <LuMoonStar size={20} />}
           </button>
@@ -98,7 +98,7 @@ export const Navbar: React.FC<NavbarProps> = ({ isLoggedIn }) => {
           {/* Dark/Light Mode Toggle Button */}
           <button
             onClick={toggleTheme}
-            className={buttonClass}
+            // className={buttonClass}
           >
             {theme === 'dark' ? <MdOutlineLightMode size={20} /> : <LuMoonStar size={20} />}
           </button>
