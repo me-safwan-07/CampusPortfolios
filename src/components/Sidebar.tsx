@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { FaChevronRight, FaChevronDown, FaSearch } from 'react-icons/fa'; // Import search icon
 import { GoXCircleFill } from 'react-icons/go';
-import { degrees, experienceOptions, technicalSkills, softSkills } from '../data'; // Import filter data
+import { degrees, experienceOptions, technicalSkills, softSkills, social } from '../data'; // Import filter data
 
 interface FilterSidebarProps {
   className?: string;
@@ -13,11 +13,13 @@ export const Sidebar: React.FC<FilterSidebarProps> = () => {
   const [showExperienceDropdown, setShowExperienceDropdown] = useState(false);
   const [showTechnicalSkillsDropdown, setShowTechnicalSkillsDropdown] = useState(false);
   const [showSoftSkillDropdown, setShowSoftSkillDropdown] = useState(false);
+  const [showSocialDropdown, setShowSocialDropdown] = useState(false);
   const [showFilterOptions, setShowFilterOptions] = useState(false); // For mobile filter toggle
   const [selectedTechnicalSkills, setSelectedTechnicalSkills] = useState<string[]>([]);
   const [selectedSoftSkills, setSelectedSoftSkills] = useState<string[]>([]);
   const [selectedDegrees, setSelectedDegrees] = useState<string[]>([]);
   const [selectedExperience, setSelectedExperience] = useState<string[]>([]);
+  const [selectedSocial, setSelectedSocial] = useState<string[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
 
   const toggleDropdown = (dropdown: string) => {
@@ -34,6 +36,9 @@ export const Sidebar: React.FC<FilterSidebarProps> = () => {
       case 'softSkills':
         setShowSoftSkillDropdown(prev => !prev);
         break;
+      case 'social':
+        setShowSocialDropdown(prev => !prev);
+        break;
       default:
         break;
     }
@@ -41,7 +46,7 @@ export const Sidebar: React.FC<FilterSidebarProps> = () => {
 
   const handleFilterChange = (
     event: React.ChangeEvent<HTMLInputElement>,
-    filterType: 'degree' | 'experience' | 'technical' | 'soft'
+    filterType: 'degree' | 'experience' | 'technical' | 'soft' | 'social'
   ) => {
     const value = event.target.value;
     switch (filterType) {
@@ -63,6 +68,13 @@ export const Sidebar: React.FC<FilterSidebarProps> = () => {
       case 'soft':
         setSelectedSoftSkills(prev =>
           prev.includes(value) ? prev.filter(s => s !== value) : [...prev, value]
+        );
+        break;
+      case 'social':
+        setSelectedSocial(prev =>
+          prev.includes(value)
+           ? prev.filter(s => s!== value)
+            : [...prev, value]
         );
         break;
     }
@@ -87,7 +99,8 @@ export const Sidebar: React.FC<FilterSidebarProps> = () => {
     selectedTechnicalSkills.length > 0 ||
     selectedSoftSkills.length > 0 ||
     selectedDegrees.length > 0 ||
-    selectedExperience.length > 0;
+    selectedExperience.length > 0 ||
+    selectedSocial.length > 0;
 
   const getDropdownIcon = (isOpen: boolean) => {
     return isOpen ? (
@@ -122,19 +135,20 @@ export const Sidebar: React.FC<FilterSidebarProps> = () => {
       <hr className="pt-0 md:hidden" />
       {/* Filter Heading with Clear Button */}
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-semibold dark:text-white hidden md:block">
+        <h1 className="text-xl font-semibold dark:text-white hidden md:block pb-2">
           Filter Templates 
-        </h2>
-        <div className="flex flex-">
+        </h1>
+        <div className="block lg:inline-block md:hidden flex justify-center text-center">
           {hasFilters && (
             <button
               onClick={clearFilters}
-              className="text-sm text-blue-600 dark:text-blue-400"
+              className="text-sm flex gap-2 justify-center items-center mx-auto border p-1 rounded-md text-gray-500 border-gray-500 hover:border-black hover:text-black dark:hover:border-white dark:hover:text-white"
             >
-              <GoXCircleFill /> Clear
+              <GoXCircleFill className='h-5'/> Clear
             </button>
           )}
         </div>
+
       </div>
 
       {/* Search Bar for Desktop */}
@@ -144,7 +158,7 @@ export const Sidebar: React.FC<FilterSidebarProps> = () => {
           value={searchTerm}
           onChange={handleSearchChange}
           placeholder="Search..."
-          className="w-full p-2 pl-10 mb-4 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600"
+          className="w-full p-2 pl-10 mb-4 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border"
         />
         <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-300" />
       </div>
@@ -157,7 +171,7 @@ export const Sidebar: React.FC<FilterSidebarProps> = () => {
             onClick={() => toggleDropdown('degree')}
             className="w-full bg-white dark:bg-black p-2 border-b border-gray-600 dark:border-gray-600 flex justify-between items-center"
           >
-            <div className="flex items-center gap-2">
+            <div className="flex items-center pb-1 gap-2">
               {getDropdownIcon(showDegreeDropdown)} Degrees
             </div>
             {selectedDegrees.length > 0 && (
@@ -176,8 +190,9 @@ export const Sidebar: React.FC<FilterSidebarProps> = () => {
                     value={degree}
                     checked={selectedDegrees.includes(degree)}
                     onChange={e => handleFilterChange(e, 'degree')}
-                    className="mr-2"
+                    className="mr-2 w-5 h-5  border-none rounded accent-black dark:accent-white"
                   />
+
                   <label
                     htmlFor={degree}
                     className="text-gray-700 dark:text-gray-300"
@@ -194,7 +209,7 @@ export const Sidebar: React.FC<FilterSidebarProps> = () => {
             onClick={() => toggleDropdown('experience')}
             className="w-full text-left bg-white dark:bg-black p-2 mt-4 border-b border-gray-300 dark:border-gray-600 flex justify-between items-center"
           >
-            <div className="flex items-center gap-2">
+            <div className="flex items-center pb-1 gap-2">
               {getDropdownIcon(showExperienceDropdown)} Experience
             </div>
             {selectedExperience.length > 0 && (
@@ -204,7 +219,7 @@ export const Sidebar: React.FC<FilterSidebarProps> = () => {
             )}
           </button>
           {showExperienceDropdown && (
-            <ul className="mt-2 space-y-2">
+            <ul className="mt-4 space-y-2">
               {experienceOptions.map(exp => (
                 <li key={exp} className="flex items-center px-6">
                   <input
@@ -213,7 +228,7 @@ export const Sidebar: React.FC<FilterSidebarProps> = () => {
                     value={exp}
                     checked={selectedExperience.includes(exp)}
                     onChange={e => handleFilterChange(e, 'experience')}
-                    className="mr-2"
+                    className="mr-2 w-4 h-4  border-none rounded accent-black dark:accent-white"
                   />
                   <label
                     htmlFor={exp}
@@ -231,7 +246,7 @@ export const Sidebar: React.FC<FilterSidebarProps> = () => {
             onClick={() => toggleDropdown('technicalSkills')}
             className="w-full text-left bg-white dark:bg-black p-2 mt-4 border-b border-gray-300 dark:border-gray-600 flex justify-between items-center"
           >
-            <div className="flex items-center gap-2">
+            <div className="flex items-center pb-1 gap-2">
               {getDropdownIcon(showTechnicalSkillsDropdown)} Technical Skills
             </div>
             {/* {selectedTechnicalSkills.length > 0 && <span>({selectedTechnicalSkills.length})</span>} */}
@@ -246,7 +261,7 @@ export const Sidebar: React.FC<FilterSidebarProps> = () => {
             {technicalSkills.map(skill => (
               <li
                 key={skill}
-                className="flex items-center px-6 border border-black hover:bg-gray-300 dark:border-gray-600 rounded dark:bg-gray-800 dark:hover:bg-gray-600"
+                className="flex items-center ml-4 p-1 border border-black rounded bg-black-100 hover:bg-black-400 dark:bg-gray-700 dark:hover:bg-gray-800 dark:border-gray-600 text-lg shadow-md dark:shadow-lg"
               >
                 <input
                   type="checkbox"
@@ -254,7 +269,7 @@ export const Sidebar: React.FC<FilterSidebarProps> = () => {
                   value={skill}
                   checked={selectedTechnicalSkills.includes(skill)}
                   onChange={e => handleFilterChange(e, 'technical')}
-                  className="mr-2 cursor-pointer accent-black dark:accent-white"
+                  className="mr-3 w-4 h-4 border rounded accent-black dark:accent-white"
                 />
                 <label
                   htmlFor={skill}
@@ -272,7 +287,7 @@ export const Sidebar: React.FC<FilterSidebarProps> = () => {
             onClick={() => toggleDropdown('softSkills')}
             className="w-full text-left bg-white dark:bg-black p-2 mt-4 border-b border-gray-300 dark:border-gray-600 flex justify-between items-center"
           >
-            <div className="flex items-center gap-2">
+            <div className="flex items-center pb-1 gap-2">
               {getDropdownIcon(showSoftSkillDropdown)} Soft Skills
             </div>
             {selectedSoftSkills.length > 0 && (
@@ -281,6 +296,7 @@ export const Sidebar: React.FC<FilterSidebarProps> = () => {
               </span>
             )}
           </button>
+
           {showSoftSkillDropdown && (
             <ul className="mt-2 space-y-2">
               {softSkills.map(skill => (
@@ -291,7 +307,42 @@ export const Sidebar: React.FC<FilterSidebarProps> = () => {
                     value={skill}
                     checked={selectedSoftSkills.includes(skill)}
                     onChange={e => handleFilterChange(e, 'soft')}
-                    className="mr-2"
+                    className="mr-2 w-5 h-5  border-none rounded accent-black dark:accent-white"
+                  />
+                  <label
+                    htmlFor={skill}
+                    className="text-gray-700 dark:text-gray-300"
+                  >
+                    {skill}
+                  </label>
+                </li>
+              ))}
+            </ul>
+          )}
+          <button
+            onClick={() => toggleDropdown('social')}
+            className="w-full bg-white dark:bg-black p-2 border-b border-gray-600 dark:border-gray-600 flex justify-between items-center"
+          >
+            <div className="flex items-center pb-1 gap-2">
+              {getDropdownIcon(showSocialDropdown)} Social
+            </div>
+            {selectedSocial.length > 0 && (
+              <span className="bg-gray-200 dark:bg-white text-gray-800 dark:text-black rounded-full border border-gray-300 dark:border-gray-600 px-2 py-0">
+                {selectedSocial.length}
+              </span>
+            )}
+          </button>
+          {showSocialDropdown && (
+            <ul className="mt-2 space-y-2">
+              {social.map(skill => (
+                <li key={skill} className="flex items-center px-6">
+                  <input
+                    type="checkbox"
+                    id={skill}
+                    value={skill}
+                    checked={selectedSocial.includes(skill)}
+                    onChange={e => handleFilterChange(e, 'social')}
+                    className="mr-2 w-5 h-5  border-none rounded accent-black dark:accent-white"
                   />
                   <label
                     htmlFor={skill}

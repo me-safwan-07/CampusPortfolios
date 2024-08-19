@@ -66,7 +66,8 @@ export const Navbar: React.FC<NavbarProps> = ({ isLoggedIn }) => {
               </li>
             </>
           )}
-          {['Template', 'About', 'Contact'].map((item) => (
+           <a href="/">Template</a>
+          {[ 'About', 'Contact'].map((item) => (
             <li key={item} className="py-2 w-full text-center">
               <a href={`/${item.toLowerCase()}`} className="text-lg hover:text-gray-300 transition-colors duration-200" onClick={() => setIsMenuOpen(false)}>
                 {item}
@@ -89,7 +90,8 @@ export const Navbar: React.FC<NavbarProps> = ({ isLoggedIn }) => {
         {/* Desktop Menu */}
         <div className="hidden lg:flex items-center space-x-5">
           {/* Links */}
-          {['Template', 'About', 'Contact'].map((item) => (
+          <a href="/">Template</a>
+          {['About', 'Contact'].map((item) => (
             <a key={item} href={`/${item.toLowerCase()}`} className="hover:text-gray-300 transition-colors duration-200">
               {item}
             </a>

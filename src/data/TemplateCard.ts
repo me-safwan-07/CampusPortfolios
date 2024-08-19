@@ -4,105 +4,24 @@ export interface Template {
     imageUrl: string;
     price: string;
     liveDemoUrl: string;
-    category: string;
+    // category: string;
+    degree?: string[];
+    experienceOptions ?: string[];
+    technicalSkills?: string[];
+    softSkills?: string[];
+    social?: string[];
   }
 
   export const templates: Template[] = [
     {
-      title: "Next.js Boilerplate",
-      description: "Get started with Next.js and React in seconds.",
+      title: "Rohith",
+      description: "",
       imageUrl: "/assets/next js template .png",
-      price: "₹499",
-      liveDemoUrl: "https://example.com/demo1",
-      category: "starter",
+      price: "₹ 499",
+      liveDemoUrl: "https://google.com",
+      degree: [ "BCOM", ],
+      experienceOptions : [ "part-time", "experience" ],
+      technicalSkills: [ "JavaScript", "React", "Node.js", "CSS" ],
+      softSkills: [ "Communication", "Teamwork", "Problem Solving", "Adaptability" ],
     },
-    {
-      title: "Image Gallery Starter",
-      description: "An image gallery built on Next.js and Cloudinary.",
-      imageUrl: "/path-to-image",
-      price: "₹699",
-      liveDemoUrl: "https://example.com/demo2",
-      category: "ecommerce",
-    },
-        {
-      title: "Next.js Boilerplate",
-      description: "Get started with Next.js and React in seconds.",
-      imageUrl: "/path-to-image",
-      price: "₹499",
-      liveDemoUrl: "https://example.com/demo1",
-      category: "starter",
-    },
-    {
-      title: "Image Gallery Starter",
-      description: "An image gallery built on Next.js and Cloudinary.",
-      imageUrl: "/path-to-image",
-      price: "₹699",
-      liveDemoUrl: "https://example.com/demo2",
-      category: "ecommerce",
-    },
-        {
-      title: "Next.js Boilerplate",
-      description: "Get started with Next.js and React in seconds.",
-      imageUrl: "/path-to-image",
-      price: "₹499",
-      liveDemoUrl: "https://example.com/demo1",
-      category: "starter",
-    },
-    {
-      title: "Image Gallery Starter",
-      description: "An image gallery built on Next.js and Cloudinary.",
-      imageUrl: "/path-to-image",
-      price: "₹699",
-      liveDemoUrl: "https://example.com/demo2",
-      category: "ecommerce",
-    },
-    {
-      title: "Next.js Boilerplate",
-      description: "Get started with Next.js and React in seconds.",
-      imageUrl: "/assets/next js template .png",
-      price: "₹499",
-      liveDemoUrl: "https://example.com/demo1",
-      category: "starter",
-    },
-    {
-      title: "Image Gallery Starter",
-      description: "An image gallery built on Next.js and Cloudinary.",
-      imageUrl: "/path-to-image",
-      price: "₹699",
-      liveDemoUrl: "https://example.com/demo2",
-      category: "ecommerce",
-    },
-        {
-      title: "Next.js Boilerplate",
-      description: "Get started with Next.js and React in seconds.",
-      imageUrl: "/path-to-image",
-      price: "₹499",
-      liveDemoUrl: "https://example.com/demo1",
-      category: "starter",
-    },
-    {
-      title: "Image Gallery Starter",
-      description: "An image gallery built on Next.js and Cloudinary.",
-      imageUrl: "/path-to-image",
-      price: "₹699",
-      liveDemoUrl: "https://example.com/demo2",
-      category: "ecommerce",
-    },
-        {
-      title: "Next.js Boilerplate",
-      description: "Get started with Next.js and React in seconds.",
-      imageUrl: "/path-to-image",
-      price: "₹499",
-      liveDemoUrl: "https://example.com/demo1",
-      category: "starter",
-    },
-    {
-      title: "Image Gallery Starter",
-      description: "An image gallery built on Next.js and Cloudinary.",
-      imageUrl: "/path-to-image",
-      price: "₹699",
-      liveDemoUrl: "https://example.com/demo2",
-      category: "ecommerce",
-    },
-    // Add more templates
   ];
