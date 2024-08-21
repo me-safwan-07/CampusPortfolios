@@ -15,10 +15,10 @@ export interface Template {
   export const templates: Template[] = [
     {
       title: "Rohith",
-      description: "",
+      description: "Simple Bcom Portfolio template with about, skill, project, and social",
       imageUrl: "/assets/next js template .png",
-      price: "₹ 499",
-      liveDemoUrl: "https://google.com",
+      price: "₹ 299",
+      liveDemoUrl: "https://student-portfolio-1-ten.vercel.app/",
       degree: [ "BCOM", ],
       experienceOptions : [ "part-time", "experience" ],
       technicalSkills: [ "JavaScript", "React", "Node.js", "CSS" ],
