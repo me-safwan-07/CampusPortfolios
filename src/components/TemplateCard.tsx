@@ -35,9 +35,9 @@ export const TemplateCard: React.FC<TemplateCardProps> = ({ title, description, 
             href={liveDemoUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-black dark:text-white text-center font-bold py-2 gap-2 px-4 flex justify-center align-center rounded border"
+            className="text-black dark:text-white text-center font-bold py-2 gap-1 px-3 flex justify-center align-center rounded border"
           >
-            <FaEye />
+            <FaEye className='m-1 h-4 w-6'/>
             Live Demo
           </a>
         </div>

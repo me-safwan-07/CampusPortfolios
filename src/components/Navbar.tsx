@@ -51,8 +51,8 @@ export const Navbar: React.FC<NavbarProps> = ({ isLoggedIn }) => {
         </button>
 
         {/* Mobile Menu */}
-        <ul className={`lg:hidden fixed top-14 left-0 h-full w-full ${menuBackground} flex flex-col items-center justify-start ${isMenuOpen ? 'block' : 'hidden'}`}>
-          {!isLoggedIn && (
+        <ul className={`lg:hidden fixed top-16 left-0 gap-2 h-full w-full ${menuBackground} flex flex-col items-center justify-start ${isMenuOpen ? 'block' : 'hidden'}`}>
+          {/* {!isLoggedIn && (
             <>
               <li className="py-2 w-full text-center">
                 <a href="/login" className={`text-lg hover:text-gray-300 transition-colors duration-200 ${theme === 'dark' ? 'text-white bg-black' : 'text-black bg-white'}`} onClick={() => setIsMenuOpen(false)}>
@@ -65,8 +65,8 @@ export const Navbar: React.FC<NavbarProps> = ({ isLoggedIn }) => {
                 </a>
               </li>
             </>
-          )}
-           <a href="/">Template</a>
+          )} */}
+          <a href="/">Template</a>
           {[ 'About', 'Contact'].map((item) => (
             <li key={item} className="py-2 w-full text-center">
               <a href={`/${item.toLowerCase()}`} className="text-lg hover:text-gray-300 transition-colors duration-200" onClick={() => setIsMenuOpen(false)}>
@@ -106,7 +106,7 @@ export const Navbar: React.FC<NavbarProps> = ({ isLoggedIn }) => {
           </button>
         </div>
 
-        <div className="hidden lg:flex items-center space-x-4">
+        {/* <div className="hidden lg:flex items-center space-x-4">
           {!isLoggedIn ? (
             <>
               <a 
@@ -133,7 +133,7 @@ export const Navbar: React.FC<NavbarProps> = ({ isLoggedIn }) => {
           ) : (
             <img src="/path/to/profile.jpg" alt="Profile" className="rounded-full h-10 w-10" />
           )}
-        </div>
+        </div> */}
       </div>
     </nav>
   );

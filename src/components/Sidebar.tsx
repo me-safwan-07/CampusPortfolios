@@ -1,6 +1,6 @@
 // src/components/FilterSidebar.tsx
 import React, { useState } from 'react';
-import { FaChevronRight, FaChevronDown, FaSearch } from 'react-icons/fa'; // Import search icon
+import { FaChevronRight, FaChevronDown, FaSearch,  } from 'react-icons/fa'; // Import search icon
 import { GoXCircleFill } from 'react-icons/go';
 import { degrees, experienceOptions, technicalSkills, softSkills, social } from '../data'; // Import filter data
 
