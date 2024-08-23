@@ -9,9 +9,9 @@ export const BackButton: React.FC = () => {
   return (
     <button
       onClick={() => navigate(-1)}
-      className="flex items-center text-sm text-gray-600 hover:text-black dark:text-gray-400 dark:hover:text-white mb-10"
+      className="flex items-center text-sm text-gray-600 hover:text-black dark:text-gray-400 dark:hover:text-white mb-10 pr-0"
     >
-      <BsArrowLeftShort className="h-6 w-8" /> {/* Icon with size */}
+      <BsArrowLeftShort className="h-6 w-8 " /> {/* Icon with size */}
       Back to Templates
     </button>
   );

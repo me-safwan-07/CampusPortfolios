@@ -18,7 +18,7 @@ export const TemplateCard: React.FC<TemplateCardProps> = ({ title, description, 
   const templateSlug = title.toLowerCase().replace(/\s+/g, '-');
 
   return (
-    <div className={`template-card rounded-lg shadow-lg overflow-hidden mx-auto border border-gray-200 transition-all duration-300 hover:border-gray-300 hover:shadow-2xl cursor-pointer ${theme === 'dark' ? 'dark' : ''} max-w-xs max-h-[500px]`}>
+    <div className={`template-card rounded-lg shadow-lg  mx-auto border border-gray-200 transition-all duration-300 hover:border-gray-300 hover:shadow-2xl cursor-pointer ${theme === 'dark' ? 'dark' : ''} max-w-xs max-h-[375px]`}>
       <Link to={`/templates/${templateSlug}`}>
         <img src={imageUrl} alt={title} className="w-full h-40 object-cover max-h-50" />
         <div className="p-4">

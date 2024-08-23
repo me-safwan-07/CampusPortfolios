@@ -1,83 +1,54 @@
-// src/components/FilterSidebar.tsx
 import React, { useState } from 'react';
-import { FaChevronRight, FaChevronDown, FaSearch,  } from 'react-icons/fa'; // Import search icon
+import { FaChevronRight, FaChevronDown, FaSearch } from 'react-icons/fa';
 import { GoXCircleFill } from 'react-icons/go';
-import { degrees, experienceOptions, technicalSkills, softSkills, social } from '../data'; // Import filter data
+import { degrees, experienceOptions, technicalSkills, softSkills, social } from '../data';
+
+type FilterKey = 'degree' | 'experience' | 'technicalSkills' | 'softSkills' | 'social';
 
 interface FilterSidebarProps {
   className?: string;
 }
 
-export const Sidebar: React.FC<FilterSidebarProps> = () => {
-  const [showDegreeDropdown, setShowDegreeDropdown] = useState(true);
-  const [showExperienceDropdown, setShowExperienceDropdown] = useState(false);
-  const [showTechnicalSkillsDropdown, setShowTechnicalSkillsDropdown] = useState(false);
-  const [showSoftSkillDropdown, setShowSoftSkillDropdown] = useState(false);
-  const [showSocialDropdown, setShowSocialDropdown] = useState(false);
-  const [showFilterOptions, setShowFilterOptions] = useState(false); // For mobile filter toggle
-  const [selectedTechnicalSkills, setSelectedTechnicalSkills] = useState<string[]>([]);
-  const [selectedSoftSkills, setSelectedSoftSkills] = useState<string[]>([]);
-  const [selectedDegrees, setSelectedDegrees] = useState<string[]>([]);
-  const [selectedExperience, setSelectedExperience] = useState<string[]>([]);
-  const [selectedSocial, setSelectedSocial] = useState<string[]>([]);
-  const [searchTerm, setSearchTerm] = useState('');
+export const FilterSidebar: React.FC<FilterSidebarProps> = () => {
+  const [dropdownStates, setDropdownStates] = useState<Record<FilterKey, boolean>>({
+    degree: true,
+    experience: false,
+    technicalSkills: false,
+    softSkills: false,
+    social: false,
+  });
+  
+  const [filterStates, setFilterStates] = useState<Record<FilterKey, string[]>>({
+    technicalSkills: [],
+    softSkills: [],
+    degree: [],
+    experience: [],
+    social: [],
+  });
 
-  const toggleDropdown = (dropdown: string) => {
-    switch (dropdown) {
-      case 'degree':
-        setShowDegreeDropdown(prev => !prev);
-        break;
-      case 'experience':
-        setShowExperienceDropdown(prev => !prev);
-        break;
-      case 'technicalSkills':
-        setShowTechnicalSkillsDropdown(prev => !prev);
-        break;
-      case 'softSkills':
-        setShowSoftSkillDropdown(prev => !prev);
-        break;
-      case 'social':
-        setShowSocialDropdown(prev => !prev);
-        break;
-      default:
-        break;
-    }
+  const [searchTerm, setSearchTerm] = useState('');
+  const [showFilterOptions, setShowFilterOptions] = useState(false);
+
+  const filterData: Record<FilterKey, string[]> = {
+    degree: degrees,
+    experience: experienceOptions,
+    technicalSkills: technicalSkills,
+    softSkills: softSkills,
+    social: social,
   };
 
-  const handleFilterChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-    filterType: 'degree' | 'experience' | 'technical' | 'soft' | 'social'
-  ) => {
+  const toggleDropdown = (key: FilterKey) => {
+    setDropdownStates(prev => ({ ...prev, [key]: !prev[key] }));
+  };
+
+  const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>, filterType: FilterKey) => {
     const value = event.target.value;
-    switch (filterType) {
-      case 'degree':
-        setSelectedDegrees(prev =>
-          prev.includes(value) ? prev.filter(d => d !== value) : [...prev, value]
-        );
-        break;
-      case 'experience':
-        setSelectedExperience(prev =>
-          prev.includes(value) ? prev.filter(e => e !== value) : [...prev, value]
-        );
-        break;
-      case 'technical':
-        setSelectedTechnicalSkills(prev =>
-          prev.includes(value) ? prev.filter(s => s !== value) : [...prev, value]
-        );
-        break;
-      case 'soft':
-        setSelectedSoftSkills(prev =>
-          prev.includes(value) ? prev.filter(s => s !== value) : [...prev, value]
-        );
-        break;
-      case 'social':
-        setSelectedSocial(prev =>
-          prev.includes(value)
-           ? prev.filter(s => s!== value)
-            : [...prev, value]
-        );
-        break;
-    }
+    setFilterStates(prev => ({
+      ...prev,
+      [filterType]: prev[filterType].includes(value)
+        ? prev[filterType].filter(item => item !== value)
+        : [...prev[filterType], value],
+    }));
   };
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -89,31 +60,25 @@ export const Sidebar: React.FC<FilterSidebarProps> = () => {
   };
 
   const clearFilters = () => {
-    setSelectedTechnicalSkills([]);
-    setSelectedSoftSkills([]);
-    setSelectedDegrees([]);
-    setSelectedExperience([]);
+    setFilterStates({
+      technicalSkills: [],
+      softSkills: [],
+      degree: [],
+      experience: [],
+      social: [],
+    });
   };
 
-  const hasFilters =
-    selectedTechnicalSkills.length > 0 ||
-    selectedSoftSkills.length > 0 ||
-    selectedDegrees.length > 0 ||
-    selectedExperience.length > 0 ||
-    selectedSocial.length > 0;
+  const hasFilters = Object.values(filterStates).some(filters => filters.length > 0);
 
-  const getDropdownIcon = (isOpen: boolean) => {
-    return isOpen ? (
-      <FaChevronDown className="inline-block ml-2" />
-    ) : (
-      <FaChevronRight className="inline-block ml-2" />
-    );
-  };
+  const getDropdownIcon = (isOpen: boolean) => (
+    isOpen ? <FaChevronDown className="ml-2" /> : <FaChevronRight className="ml-2" />
+  );
 
   return (
     <div className="flex flex-col w-full md:w-80 p-4 bg-white dark:bg-black rounded-md">
       {/* Search Bar for Mobile */}
-      <div className="relative block md:block">
+      <div className="relative block md:hidden">
         <input
           type="text"
           value={searchTerm}
@@ -133,22 +98,20 @@ export const Sidebar: React.FC<FilterSidebarProps> = () => {
         Filter By:
       </button>
       <hr className="pt-0 md:hidden" />
+
       {/* Filter Heading with Clear Button */}
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-xl font-semibold dark:text-white hidden md:block pb-2">
-          Filter Templates 
+          Filter Templates
         </h1>
-        <div className="block lg:inline-block md:hidden flex justify-center text-center">
-          {hasFilters && (
-            <button
-              onClick={clearFilters}
-              className="text-sm flex gap-2 justify-center items-center mx-auto border p-1 rounded-md text-gray-500 border-gray-500 hover:border-black hover:text-black dark:hover:border-white dark:hover:text-white"
-            >
-              <GoXCircleFill className='h-5'/> Clear
-            </button>
-          )}
-        </div>
-
+        {hasFilters && (
+          <button
+            onClick={clearFilters}
+            className="text-sm flex flex-grow gap-2 justify-center items-center mx-auto border p-1 rounded-md text-gray-500 border-gray-500 hover:border-black hover:text-black dark:hover:border-white dark:hover:text-white"
+          >
+            <GoXCircleFill className='h-5' /> Clear
+          </button>
+        )}
       </div>
 
       {/* Search Bar for Desktop */}
@@ -166,196 +129,49 @@ export const Sidebar: React.FC<FilterSidebarProps> = () => {
       {/* Filter Options - Collapsible on Mobile */}
       {(showFilterOptions || !window.matchMedia('(max-width: 767px)').matches) && (
         <>
-          {/* Degree Dropdown */}
-          <button
-            onClick={() => toggleDropdown('degree')}
-            className="w-full bg-white dark:bg-black p-2 border-b border-gray-600 dark:border-gray-600 flex justify-between items-center"
-          >
-            <div className="flex items-center pb-1 gap-2">
-              {getDropdownIcon(showDegreeDropdown)} Degrees
-            </div>
-            {selectedDegrees.length > 0 && (
-              <span className="bg-gray-200 dark:bg-white text-gray-800 dark:text-black rounded-full border border-gray-300 dark:border-gray-600 px-2 py-0">
-                {selectedDegrees.length}
-              </span>
-            )}
-          </button>
-          {showDegreeDropdown && (
-            <ul className="mt-2 space-y-2">
-              {degrees.map(degree => (
-                <li key={degree} className="flex items-center px-6">
-                  <input
-                    type="checkbox"
-                    id={degree}
-                    value={degree}
-                    checked={selectedDegrees.includes(degree)}
-                    onChange={e => handleFilterChange(e, 'degree')}
-                    className="mr-2 w-5 h-5  border-none rounded accent-black dark:accent-white"
-                  />
-
-                  <label
-                    htmlFor={degree}
-                    className="text-gray-700 dark:text-gray-300"
-                  >
-                    {degree}
-                  </label>
-                </li>
-              ))}
-            </ul>
-          )}
-
-          {/* Experience Dropdown */}
-          <button
-            onClick={() => toggleDropdown('experience')}
-            className="w-full text-left bg-white dark:bg-black p-2 mt-4 border-b border-gray-300 dark:border-gray-600 flex justify-between items-center"
-          >
-            <div className="flex items-center pb-1 gap-2">
-              {getDropdownIcon(showExperienceDropdown)} Experience
-            </div>
-            {selectedExperience.length > 0 && (
-              <span className="bg-gray-200 dark:bg-white text-gray-800 dark:text-black rounded-full border border-gray-300 dark:border-gray-600 px-2 py-0">
-                {selectedExperience.length}
-              </span>
-            )}
-          </button>
-          {showExperienceDropdown && (
-            <ul className="mt-4 space-y-2">
-              {experienceOptions.map(exp => (
-                <li key={exp} className="flex items-center px-6">
-                  <input
-                    type="checkbox"
-                    id={exp}
-                    value={exp}
-                    checked={selectedExperience.includes(exp)}
-                    onChange={e => handleFilterChange(e, 'experience')}
-                    className="mr-2 w-4 h-4  border-none rounded accent-black dark:accent-white"
-                  />
-                  <label
-                    htmlFor={exp}
-                    className="text-gray-700 dark:text-gray-300"
-                  >
-                    {exp}
-                  </label>
-                </li>
-              ))}
-            </ul>
-          )}
-
-          {/* Technical Skills */}
-          <button
-            onClick={() => toggleDropdown('technicalSkills')}
-            className="w-full text-left bg-white dark:bg-black p-2 mt-4 border-b border-gray-300 dark:border-gray-600 flex justify-between items-center"
-          >
-            <div className="flex items-center pb-1 gap-2">
-              {getDropdownIcon(showTechnicalSkillsDropdown)} Technical Skills
-            </div>
-            {/* {selectedTechnicalSkills.length > 0 && <span>({selectedTechnicalSkills.length})</span>} */}
-            {selectedTechnicalSkills.length > 0 && (
-              <span className="bg-gray-200 dark:bg-white text-gray-800 dark:text-black rounded-full border border-gray-300 dark:border-gray-600 px-2 py-0">
-                {selectedTechnicalSkills.length}
-              </span>
-            )}
-          </button>
-          {showTechnicalSkillsDropdown && (
-            <ul className="mt-2 space-y-2">
-            {technicalSkills.map(skill => (
-              <li
-                key={skill}
-                className="flex items-center ml-4 p-1 border border-black rounded bg-black-100 hover:bg-black-400 dark:bg-gray-700 dark:hover:bg-gray-800 dark:border-gray-600 text-lg shadow-md dark:shadow-lg"
-              >
-                <input
-                  type="checkbox"
-                  id={skill}
-                  value={skill}
-                  checked={selectedTechnicalSkills.includes(skill)}
-                  onChange={e => handleFilterChange(e, 'technical')}
-                  className="mr-3 w-4 h-4 border rounded accent-black dark:accent-white"
-                />
-                <label
-                  htmlFor={skill}
-                  className="text-gray-700 dark:text-gray-300"
+          {Object.keys(filterData).map(filter => {
+            const key = filter as FilterKey;
+            return (
+              <div key={key}>
+                <button
+                  onClick={() => toggleDropdown(key)}
+                  className="w-full bg-white dark:bg-black p-2 border-b border-gray-600 dark:border-gray-600 flex justify-between items-center"
                 >
-                  {skill}
-                </label>
-              </li>
-            ))}
-          </ul>
-          )}
-
-          {/* Soft Skills */}
-          <button
-            onClick={() => toggleDropdown('softSkills')}
-            className="w-full text-left bg-white dark:bg-black p-2 mt-4 border-b border-gray-300 dark:border-gray-600 flex justify-between items-center"
-          >
-            <div className="flex items-center pb-1 gap-2">
-              {getDropdownIcon(showSoftSkillDropdown)} Soft Skills
-            </div>
-            {selectedSoftSkills.length > 0 && (
-              <span className="bg-gray-200 dark:bg-white text-gray-800 dark:text-black rounded-full border border-gray-300 dark:border-gray-600 px-2 py-0">
-                {selectedSoftSkills.length}
-              </span>
-            )}
-          </button>
-
-          {showSoftSkillDropdown && (
-            <ul className="mt-2 space-y-2">
-              {softSkills.map(skill => (
-                <li key={skill} className="flex items-center px-6">
-                  <input
-                    type="checkbox"
-                    id={skill}
-                    value={skill}
-                    checked={selectedSoftSkills.includes(skill)}
-                    onChange={e => handleFilterChange(e, 'soft')}
-                    className="mr-2 w-5 h-5  border-none rounded accent-black dark:accent-white"
-                  />
-                  <label
-                    htmlFor={skill}
-                    className="text-gray-700 dark:text-gray-300"
-                  >
-                    {skill}
-                  </label>
-                </li>
-              ))}
-            </ul>
-          )}
-          <button
-            onClick={() => toggleDropdown('social')}
-            className="w-full bg-white dark:bg-black p-2 border-b border-gray-600 dark:border-gray-600 flex justify-between items-center"
-          >
-            <div className="flex items-center pb-1 gap-2">
-              {getDropdownIcon(showSocialDropdown)} Social
-            </div>
-            {selectedSocial.length > 0 && (
-              <span className="bg-gray-200 dark:bg-white text-gray-800 dark:text-black rounded-full border border-gray-300 dark:border-gray-600 px-2 py-0">
-                {selectedSocial.length}
-              </span>
-            )}
-          </button>
-          {showSocialDropdown && (
-            <ul className="mt-2 space-y-2">
-              {social.map(skill => (
-                <li key={skill} className="flex items-center px-6">
-                  <input
-                    type="checkbox"
-                    id={skill}
-                    value={skill}
-                    checked={selectedSocial.includes(skill)}
-                    onChange={e => handleFilterChange(e, 'social')}
-                    className="mr-2 w-5 h-5  border-none rounded accent-black dark:accent-white"
-                  />
-                  <label
-                    htmlFor={skill}
-                    className="text-gray-700 dark:text-gray-300"
-                  >
-                    {skill}
-                  </label>
-                </li>
-              ))}
-            </ul>
-          )}
+                  <div className="flex items-center pb-1 gap-2">
+                    {getDropdownIcon(dropdownStates[key])} {key.charAt(0).toUpperCase() + key.slice(1).replace(/([A-Z])/g, ' $1')}
+                  </div>
+                  {filterStates[key].length > 0 && (
+                    <span className="bg-gray-200 dark:bg-white text-gray-800 dark:text-black rounded-full border border-gray-300 dark:border-gray-600 px-2 py-0">
+                      {filterStates[key].length}
+                    </span>
+                  )}
+                </button>
+                {dropdownStates[key] && (
+                  <ul className="mt-4 space-y-2">
+                    {filterData[key].map(item => (
+                      <li key={item} className="flex items-center px-6">
+                        <input
+                          type="checkbox"
+                          id={item}
+                          value={item}
+                          checked={filterStates[key].includes(item)}
+                          onChange={(e) => handleFilterChange(e, key)}
+                          className="mr-2 w-4 h-4 border-none rounded accent-black dark:accent-white"
+                        />
+                        <label htmlFor={item} className="text-gray-700 dark:text-gray-300">
+                          {item}
+                        </label>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            );
+          })}
         </>
       )}
     </div>
   );
 };
+
+export default FilterSidebar;
