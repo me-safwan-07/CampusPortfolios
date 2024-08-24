@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 export const useTheme = () => {
   // Get the theme from localStorage or default to light
-  const [theme, setTheme] = useState<string>(() => localStorage.getItem('theme') || 'light');
+  const [theme, setTheme] = useState<string>(() => localStorage.getItem('theme') || 'dark');
 
   useEffect(() => {
     // Update the HTML class for dark mode and save to localStorage

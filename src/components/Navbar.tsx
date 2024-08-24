@@ -28,7 +28,7 @@ export const Navbar: React.FC<NavbarProps> = ({ isLoggedIn }) => {
   }, [isMenuOpen]);
 
   return (
-    <nav className={`nav-bar fixed border-b border-black  top-0 left-0 w-full z-50 ${themeClasses} p-4`}>
+    <nav className={`nav-bar fixed border-b border-b-gray-800  top-0 left-0 w-full z-50 ${themeClasses} p-4`}>
       <div className="flex justify-between items-center px-2 py-0 max-w-full mx-auto">
         {/* Logo and Title */}
         <div className="flex items-center space-x-4">
@@ -51,7 +51,7 @@ export const Navbar: React.FC<NavbarProps> = ({ isLoggedIn }) => {
         </button>
 
         {/* Mobile Menu */}
-        <ul className={`lg:hidden fixed top-16 left-0 gap-2 h-full w-full ${menuBackground} flex flex-col items-center justify-start ${isMenuOpen ? 'block' : 'hidden'}`}>
+        <ul className={`lg:hidden text-xl fixed top-16 text-start left-0 gap-2 h-full w-full ${menuBackground} flex flex-col items-center justify-start ${isMenuOpen ? 'block' : 'hidden'}`}>
           {/* {!isLoggedIn && (
             <>
               <li className="py-2 w-full text-center">
@@ -66,14 +66,10 @@ export const Navbar: React.FC<NavbarProps> = ({ isLoggedIn }) => {
               </li>
             </>
           )} */}
-          <a href="/">Template</a>
-          {[ 'About', 'Contact'].map((item) => (
-            <li key={item} className="py-2 w-full text-center">
-              <a href={`/${item.toLowerCase()}`} className="text-lg hover:text-gray-300 transition-colors duration-200" onClick={() => setIsMenuOpen(false)}>
-                {item}
-              </a>
-            </li>
-          ))}
+          <a href="/" className='hover:text-gray-300 font-transition-colors duration-200 !important'>Template</a>
+          <a href="/why-portfolio">Why Portfolio</a>
+          <a href="/about">About</a>
+          
           {isLoggedIn && (
             <li className="py-2 w-full text-center">
               <img src="/path/to/profile.jpg" alt="Profile" className="rounded-full h-12 w-12" />
@@ -90,13 +86,9 @@ export const Navbar: React.FC<NavbarProps> = ({ isLoggedIn }) => {
         {/* Desktop Menu */}
         <div className="hidden lg:flex items-center space-x-5">
           {/* Links */}
-          <a href="/">Template</a>
-          {['About', 'Contact'].map((item) => (
-            <a key={item} href={`/${item.toLowerCase()}`} className="hover:text-gray-300 transition-colors duration-200">
-              {item}
-            </a>
-          ))}
-
+          <a href="/" className='hover:text-gray-300 transition-colors duration-200 !important'>Template</a>
+          <a href="/why-portfolio">Why Portfolio</a>
+          <a href="/about">About</a>
           {/* Dark/Light Mode Toggle Button */}
           <button
             onClick={toggleTheme}

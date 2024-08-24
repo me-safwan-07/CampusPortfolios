@@ -38,7 +38,7 @@ export const TemplateCard: React.FC<TemplateCardProps> = ({ title, description, 
             className="text-black dark:text-white text-center font-bold py-2 gap-1 px-3 flex justify-center align-center rounded border"
           >
             <FaEye className='m-1 h-4 w-6'/>
-            Live Demo
+            View Demo
           </a>
         </div>
     </div>

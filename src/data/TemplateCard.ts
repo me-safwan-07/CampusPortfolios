@@ -17,8 +17,14 @@ export interface Template {
     {
       title: "BCOM Portfolio Template - Rohith",
       description: "Simple Bcom Portfolio template with about, skill, project, and social",
-      about: ["A professional portfolio template designed for BCOM graduates, featuring sections for About, Skills, Projects, and Social Links. Ideal for showcasing your educational background and experience in a clean, organized manner. Includes sections for technical and soft skills, with a focus on providing a comprehensive view of your capabilities."],
-      imageUrl: "/assets/next js template .png",
+      about: [
+        "A professional portfolio template designed for BCOM graduates,",
+        "featuring sections for About, Skills, Projects, and Social Links.",
+        "Ideal for showcasing your educational background and experience in a clean, organized manner.",
+        "Includes sections for technical and soft skills,",
+        "with a focus on providing a comprehensive view of your capabilities."
+      ],
+      imageUrl: "/assets/bca/bca.rohith.png",
       price: "₹ 299",
       liveDemoUrl: "https://student-portfolio-1-ten.vercel.app/",
       degree: [ "BCOM", ],
