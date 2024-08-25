@@ -1,23 +1,28 @@
 import { useState, useEffect } from 'react';
 
 export const useTheme = () => {
-  // Get the theme from localStorage or default to light
-  const [theme, setTheme] = useState<string>(() => localStorage.getItem('theme') || 'dark');
+  // Initialize theme state based on localStorage or default to 'dark'
+  const [theme, setTheme] = useState<string>(() => {
+    // Check localStorage for existing theme
+    const storedTheme = localStorage.getItem('theme');
+    return storedTheme ? storedTheme : 'dark'; // Default to 'dark' if no theme is stored
+  });
 
   useEffect(() => {
-    // Update the HTML class for dark mode and save to localStorage
+    // Apply the theme to the document root element
     const root = window.document.documentElement;
+    
     if (theme === 'dark') {
       root.classList.add('dark');
     } else {
       root.classList.remove('dark');
     }
 
-    // Save the theme in localStorage so it persists after refresh
+    // Save the selected theme to localStorage
     localStorage.setItem('theme', theme);
   }, [theme]);
 
-  // Toggle function to switch between light and dark
+  // Function to toggle between light and dark mode
   const toggleTheme = () => {
     setTheme((prevTheme) => (prevTheme === 'dark' ? 'light' : 'dark'));
   };

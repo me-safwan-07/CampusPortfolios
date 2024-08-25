@@ -4,3 +4,4 @@ export { TemplateCard } from "./TemplateCard";
 export { Footer } from "./Footer";
 export { BackButton } from "./BackButton";
 export { FilterSidebar } from "./Sidebar";
+export { Forms } from "./Forms";
