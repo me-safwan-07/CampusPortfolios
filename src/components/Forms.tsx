@@ -4,7 +4,7 @@ import { useTheme } from '../hooks/useTheme'; // Adjust the path as needed
 interface forms {
   className?: string;
 }
-export const Forms: React.FC<forms> = ({ className }) => {
+export const Forms: React.FC<forms> =  () => {
   const { theme } = useTheme(); // Get the theme value from the hook
 
   return (
