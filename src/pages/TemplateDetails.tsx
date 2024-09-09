@@ -70,13 +70,12 @@ const TemplateDetails: React.FC = () => {
             <li key={index} className="mb-2">{item}</li>
           ))}
         </ul>
-        {/* <div className="bg-gray-100 dark:bg-gray-900 flex justify-center h-auto p-4 md:p-2 md:w-2/3 lg:p-4 rounded-lg shadow-md"> */}
-          {/* <h3 className="text-base md:text-lg lg:text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">
+        <div className="bg-gray-100 dark:bg-gray-900 flex justify-center h-auto p-4 md:p-2 md:w-2/3 lg:p-4 rounded-lg shadow-md">
+          <h3 className="text-base md:text-lg lg:text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">
             Like this template? Complete the form below, and we'll get in touch with you shortly.
-          </h3> */}
-          <Forms className="block md:hidden relative left-0 top-0 w-full h-full border" />
-        {/* </div> */}
-
+          </h3> 
+           <Forms className="block md:hidden relative left-0 top-0 w-full h-full border" />
+         </div>
       </div>
     </div>
   );

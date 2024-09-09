@@ -90,14 +90,15 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = () => {
       </div>
 
       {/* Mobile Filter Toggle Button */}
-      <hr className="pb-1 md:hidden" />
+      <hr className="md:hidden" />
       <button
         onClick={toggleFilterOptions}
-        className="block border-none text-start md:hidden w-full bg-white dark:bg-black p-2 mb-4 border border-black dark:border-white rounded-md"
+        className="flex justify-between mt-3  align-center block border-none text-start md:hidden w-full bg-white dark:bg-black p-2 mb-4 border border-black dark:border-white rounded-md"
       >
-        Filter By:
+        Filter By: 
+        { showFilterOptions === true ? <FaChevronDown className='m-1'/>: <FaChevronRight className='m-1'/>}
       </button>
-      <hr className="pt-0 md:hidden" />
+      <hr className="md:hidden" />
 
       {/* Filter Heading with Clear Button */}
       <div className="flex justify-between items-center mb-4">
@@ -107,7 +108,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = () => {
         {hasFilters && (
           <button
             onClick={clearFilters}
-            className="text-sm flex flex-grow gap-2 justify-center items-center mx-auto border p-1 rounded-md text-gray-500 border-gray-500 hover:border-black hover:text-black dark:hover:border-white dark:hover:text-white"
+            className=" md:p0 text-sm flex flex-grow gap-2 justify-center items-center mx-auto border p-1 rounded-md text-gray-500 border-gray-500 hover:border-black hover:text-black dark:hover:border-white dark:hover:text-white"
           >
             <GoXCircleFill className='h-5' /> Clear
           </button>
@@ -115,7 +116,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = () => {
       </div>
 
       {/* Search Bar for Desktop */}
-      <div className="relative hidden md:block">
+      <div className="relative hidden md:block cursor-pointer">
         <input
           type="text"
           value={searchTerm}
@@ -149,16 +150,16 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = () => {
                 {dropdownStates[key] && (
                   <ul className="mt-4 space-y-2">
                     {filterData[key].map(item => (
-                      <li key={item} className="flex items-center px-6">
+                      <li key={item} className="flex items-center px-6 cursor-pointer">
                         <input
                           type="checkbox"
                           id={item}
                           value={item}
                           checked={filterStates[key].includes(item)}
                           onChange={(e) => handleFilterChange(e, key)}
-                          className="mr-2 w-4 h-4 border-none rounded accent-black dark:accent-white"
+                          className="mr-2 w-4 h-4 border-none rounded accent-black dark:accent-white cursor-pointer"
                         />
-                        <label htmlFor={item} className="text-gray-700 dark:text-gray-300">
+                        <label htmlFor={item} className="text-gray-700 dark:text-gray-300 cursor-pointer">
                           {item}
                         </label>
                       </li>
