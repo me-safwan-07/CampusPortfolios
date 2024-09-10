@@ -6,7 +6,7 @@ export function FindTemplate() {
         Find Your Portfolio Template
       </h2>
       <p className="text-base sm:text-lg md:text-xl lg:text-2xl dark:text-gray-400 mb-4 sm:mb-6 md:mb-8 lg:mb-10 text-center">
-        Discover Next.js templates, starters, and themes to jumpstart your application or website build.
+          Stand out in today’s world with a professional portfolio that showcases your skills and achievements!
       </p>
     </div>
   );

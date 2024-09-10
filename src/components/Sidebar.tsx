@@ -78,7 +78,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = () => {
   return (
     <div className="flex flex-col w-full md:w-80 p-4 bg-white dark:bg-black rounded-md">
       {/* Search Bar for Mobile */}
-      <div className="relative block md:hidden">
+      <div className="relative block md:hidden flex">
         <input
           type="text"
           value={searchTerm}
@@ -86,7 +86,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = () => {
           placeholder="Search..."
           className="w-full p-2 pl-12 mb-4 border-none rounded-md dark:bg-black dark:text-white dark:border-gray-600"
         />
-        <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-300" />
+        <FaSearch className="absolute left-5 top-5 transform -translate-y-1/2 text-gray-400 dark:text-gray-300" />
       </div>
 
       {/* Mobile Filter Toggle Button */}
@@ -116,7 +116,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = () => {
       </div>
 
       {/* Search Bar for Desktop */}
-      <div className="relative hidden md:block cursor-pointer">
+      <div className="relative hidden md:block cursor-pointer flex">
         <input
           type="text"
           value={searchTerm}
@@ -124,7 +124,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = () => {
           placeholder="Search..."
           className="w-full p-2 pl-10 mb-4 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border"
         />
-        <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-300" />
+        <FaSearch className="absolute left-3 top-5 transform -translate-y-1/2 text-gray-400 dark:text-gray-300" />
       </div>
 
       {/* Filter Options - Collapsible on Mobile */}

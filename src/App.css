@@ -5,6 +5,21 @@ body {
   /* padding: 0 10% 0 10%; */
 }
 
+.search {
+  all:unset;
+  width: 100%;
+  padding: 8px 10px;
+  margin-bottom: 16px;
+  border: 1px solid gray;
+  border-radius: 8px;
+  background-color: transparent;
+  color: inherit;
+}
+
+.search::placeholder {
+  color: inherit;
+  opacity: 0.5;
+}
 @media (min-width: 640px) {
   .template-container {
     padding: 1.5rem; /* Small screens padding */
